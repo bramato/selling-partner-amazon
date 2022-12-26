@@ -1,0 +1,20 @@
+{
+    "name": "bramatom/selling-partner-amazon",
+    "description": "Selling partner amazon API",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Bramatom\\SellingPartnerAmazon\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Marco Bramato",
+            "email": "marco@bramato.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "guzzlehttp/guzzle": "^7.5@dev"
+    }
+}
