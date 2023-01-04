@@ -1,28 +1,25 @@
 <?php
+namespace Bramatom\SellingPartnerAmazon\classes;
+
 use GuzzleHttp\Client;
 
-class AmazonSellingPartner
+class AmazonSellingPartnerClient
 {
-    protected $client;
-    protected $accessKey;
-    protected $secretKey;
-    protected $sellerId;
-    protected $marketplace;
-    protected $marketplaces = [
-        'na' => 'https://sellingpartnerapi-na.amazon.com',
-        'eu' => 'https://sellingpartnerapi-eu.amazon.com',
-        'jp' => 'https://sellingpartnerapi-jp.amazon.com',
-    ];
+    protected Client $client;
+    protected string $accessKey;
+    protected string $secretKey;
+    protected string $sellerId;
+    protected AmazonMarketPlace $marketplace;
 
-    public function __construct($accessKey, $secretKey, $sellerId, $marketplace)
+    public function __construct(AmazonMarketPlaceKey $key)
     {
-        $this->accessKey = $accessKey;
-        $this->secretKey = $secretKey;
-        $this->sellerId = $sellerId;
-        $this->marketplace = $marketplace;
+        $this->accessKey = $key->accessKey;
+        $this->secretKey = $key->secretKey;
+        $this->sellerId = $key->sellerId;
+        $this->marketplace = $key->marketplace;
 
         $this->client = new Client([
-            'base_uri' => $this->marketplaces[$this->marketplace],
+            'base_uri' => $this->marketplace->getEndpoint(),
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Authorization' => 'AWS4-HMAC-SHA256'
@@ -30,7 +27,7 @@ class AmazonSellingPartner
         ]);
     }
 
-    public function makeRequest($method, $path, $options = [])
+    public function makeRequest($method, $path, array $options = [])
     {
         $options['headers']['X-Amz-Target'] = "com.amazon.paapi5.v1.ProductAdvertisingAPIv1.$path";
         $options['headers']['X-Amz-Date'] = gmdate('Ymd\THis\Z');
@@ -47,9 +44,9 @@ class AmazonSellingPartner
 
     protected function calculateAuthorizationHeader($method, $path, $options)
     {
-        $query = isset($options['query']) ? $options['query'] : [];
-        $body = isset($options['body']) ? $options['body'] : '';
-        $headers = isset($options['headers']) ? $options['headers'] : [];
+        $query = $options['query'] ?? [];
+        $body = $options['body'] ?? '';
+        $headers = $options['headers'] ?? [];
 
         // Crea la stringa di richiesta
         $stringToSign = strtoupper($method) . "\n" . $path . "\n" . http_build_query($query) . "\n";
@@ -65,7 +62,7 @@ class AmazonSellingPartner
         $signatureString = "AWS4-HMAC-SHA256\n" . $creationString . $this->sellerId . "\n";
 
         // Crea la stringa di firma della chiave
-        $signatureKeyString = "AWS4-HMAC-SHA256\n" . $this->marketplace . "\n" . $this->region . "\n";
+        $signatureKeyString = "AWS4-HMAC-SHA256\n" . $this->marketplace->getId() . "\n" . $this->marketplace->getZone() . "\n";
 
         // Calcola la firma della chiave
         $signatureKey = hash_hmac('sha256', $signatureKeyString, $this->secretKey, true);
@@ -77,9 +74,7 @@ class AmazonSellingPartner
         $signature = base64_encode($signature);
 
         // Crea l'intestazione di autorizzazione
-        $authorizationHeader = "AWS4-HMAC-SHA256 Credential={$this->sellerId}/{$creationString}{$this->marketplace}/aws4_request, SignedHeaders=content-type;x-amz-date;x-amz-seller-id;x-amz-target, Signature=$signature";
-
-        return $authorizationHeader;
+        return "AWS4-HMAC-SHA256 Credential={$this->sellerId}/{$creationString}{$this->marketplace}/aws4_request, SignedHeaders=content-type;x-amz-date;x-amz-seller-id;x-amz-target, Signature=$signature";
     }
 
 }
