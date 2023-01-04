@@ -1,6 +1,6 @@
-# Amazon Selling Partner
+# Selling Partner Amazon
 
-Amazon Selling Partner Library is a set of classes that provides developers with a way to connect to the Amazon Selling Partner API. This library allows developers to access and manage their Amazon seller accounts, retrieve and update product information, fulfill orders, and more. The library is designed to be easy to use and includes methods for handling common tasks such as authenticating with the API, making HTTP requests, and handling errors. It is a valuable tool for anyone looking to build applications or integrations with the Amazon Selling Partner API.
+Selling Partner Amazon Library is a set of classes that provides developers with a way to connect to the Amazon Selling Partner API. This library allows developers to access and manage their Amazon seller accounts, retrieve and update product information, fulfill orders, and more. The library is designed to be easy to use and includes methods for handling common tasks such as authenticating with the API, making HTTP requests, and handling errors. It is a valuable tool for anyone looking to build applications or integrations with the Amazon Selling Partner API.
 
 ## Installation
 

@@ -14,4 +14,8 @@ class AmazonSellingPartnerZoneEndpoint
     const AUSTRALIA = 'https://sellingpartnerapi-au.amazon.com';
     const BRAZIL = 'https://sellingpartnerapi-br.amazon.com';
     const MEXICO = 'https://sellingpartnerapi-mx.amazon.com';
+
+    const NORTH_AMERICA_SANDBOX = 'https://sandbox.sellingpartnerapi-na.amazon.com';
+    const EUROPE_SANDBOX = 'https://sandbox.sellingpartnerapi-eu.amazon.com';
+    const FAR_EAST_SANDBOX = 'https://sandbox.sellingpartnerapi-fe.amazon.com';
 }
