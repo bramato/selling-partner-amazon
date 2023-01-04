@@ -1,11 +1,11 @@
 <?php
 
-namespace classes;
+namespace Bramatom\tests;
 
-use Bramatom\SellingPartnerAmazon\classes\AmazonMarketPlace;
-use Bramatom\SellingPartnerAmazon\classes\AmazonMarketplaceId;
-use Bramatom\SellingPartnerAmazon\classes\AmazonMarketplaceZone;
-use Bramatom\SellingPartnerAmazon\classes\AmazonSellingPartnerZoneEndpoint;
+use Bramatom\SellingPartnerAmazon\AmazonMarketPlace;
+use Bramatom\SellingPartnerAmazon\AmazonMarketplaceId;
+use Bramatom\SellingPartnerAmazon\AmazonMarketplaceZone;
+use Bramatom\SellingPartnerAmazon\AmazonSellingPartnerZoneEndpoint;
 use PHPUnit\Framework\TestCase;
 
 class AmazonMarketPlaceTest extends TestCase

@@ -1,5 +1,5 @@
 <?php
-namespace Bramatom\SellingPartnerAmazon\classes;
+namespace Bramatom\SellingPartnerAmazon;
 
 use GuzzleHttp\Client;
 

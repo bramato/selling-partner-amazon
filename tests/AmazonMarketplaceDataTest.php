@@ -1,11 +1,10 @@
 <?php
 
-namespace classes;
+namespace Bramatom\tests;
 
-use Bramatom\SellingPartnerAmazon\classes\AmazonMarketplaceData;
-use Bramatom\SellingPartnerAmazon\classes\AmazonMarketplaceId;
+use Bramatom\SellingPartnerAmazon\AmazonMarketplaceData;
+use Bramatom\SellingPartnerAmazon\AmazonMarketplaceId;
 use PHPUnit\Framework\TestCase;
-use stdClass;
 
 class AmazonMarketplaceDataTest extends TestCase
 {
