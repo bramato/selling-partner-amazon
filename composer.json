@@ -2,6 +2,7 @@
     "name": "bramatom/selling-partner-amazon",
     "description": "Selling partner amazon API",
     "type": "library",
+    "license": "MIT",
     "autoload": {
         "psr-4": {
             "Bramatom\\SellingPartnerAmazon\\": "src/"
