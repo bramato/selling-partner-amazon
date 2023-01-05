@@ -22,10 +22,10 @@ class AmazonMarketPlaceKey
     /**
      * @throws \Exception
      */
-    public static function create(string $marketPlaceId, string $secretKey, string $accessKey, string $sellerId)
+    public static function create(string $marketPlaceId, string $secretKey, string $accessKey, string $sellerId, bool $isSandbox = true)
     {
         try {
-            $marketplace = new AmazonMarketPlace($marketPlaceId);
+            $marketplace = new AmazonMarketPlace($marketPlaceId,$isSandbox);
             return new AmazonMarketPlaceKey($marketplace, $secretKey, $accessKey, $sellerId);
         }catch(\Throwable $e){
             throw new \Exception($e->getMessage());

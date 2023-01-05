@@ -14,7 +14,8 @@ class AmazonMarketplaceDataTest extends TestCase
      */
     public function testGetAll()
     {
-        $marketplaces = AmazonMarketplaceData::getAll();
+        AmazonMarketPlaceData::clearMarketplaces();
+        $marketplaces = AmazonMarketplaceData::getAll(false);
         $this->assertNotEmpty($marketplaces);
         $this->assertIsArray($marketplaces);
         // CHeck if in all elements has a value from SANDBOX
@@ -23,7 +24,7 @@ class AmazonMarketplaceDataTest extends TestCase
     }
     public function testGetAllSandBox(){
         AmazonMarketPlaceData::clearMarketplaces();
-        $marketplaces = AmazonMarketplaceData::getAll(true);
+        $marketplaces = AmazonMarketplaceData::getAll();
         $this->assertNotEmpty($marketplaces);
         $this->assertIsArray($marketplaces);
         // CHeck if in all elements has a value from SANDBOX
@@ -35,6 +36,7 @@ class AmazonMarketplaceDataTest extends TestCase
      */
     public function testGetById()
     {
+        AmazonMarketPlaceData::clearMarketplaces();
         $marketplace = AmazonMarketplaceData::getById(AmazonMarketplaceId::EUROPE_ITALY);
         $this->assertNotEmpty($marketplace);
         $this->assertEquals(AmazonMarketplaceId::EUROPE_ITALY, $marketplace['id']);

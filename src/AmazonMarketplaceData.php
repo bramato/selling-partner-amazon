@@ -12,7 +12,7 @@ class AmazonMarketplaceData
     /**
      * @return array
      */
-    public static function getAll(bool $is_sandbox = false):array
+    public static function getAll(bool $is_sandbox = true):array
     {
         if (empty(self::$marketplaces)) {
             self::initMarketplaces($is_sandbox);
@@ -25,7 +25,7 @@ class AmazonMarketplaceData
      *
      * @return mixed|null
      */
-    public static function getById($id, bool $is_sandbox = false)
+    public static function getById($id, bool $is_sandbox = true)
     {
         if (empty(self::$marketplaces)) {
             self::initMarketplaces($is_sandbox);
@@ -49,7 +49,7 @@ class AmazonMarketplaceData
      *
      * @return void
      */
-    private static function initMarketplaces(bool $is_sandbox = false): void
+    private static function initMarketplaces(bool $is_sandbox = true): void
     {
         if($is_sandbox){
             self::$marketplaces = [

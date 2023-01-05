@@ -11,9 +11,10 @@ class AmazonMarketPlace
     public ?string $endpoint = null;
     public bool $error = false;
 
-    public function __construct(string $marketPlaceId)
+    public function __construct(string $marketPlaceId, bool $isSandbox = true)
+
     {
-        $data = AmazonMarketplaceData::getById($marketPlaceId);
+        $data = AmazonMarketplaceData::getById($marketPlaceId, $isSandbox);
         if (is_array($data)){
             $this->data = $data;
             $this->id = $data['id'];

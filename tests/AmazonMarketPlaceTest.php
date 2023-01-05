@@ -3,6 +3,7 @@
 namespace Bramatom\tests;
 
 use Bramatom\SellingPartnerAmazon\AmazonMarketPlace;
+use Bramatom\SellingPartnerAmazon\AmazonMarketplaceData;
 use Bramatom\SellingPartnerAmazon\AmazonMarketplaceId;
 use Bramatom\SellingPartnerAmazon\AmazonMarketplaceZone;
 use Bramatom\SellingPartnerAmazon\AmazonSellingPartnerZoneEndpoint;
@@ -12,8 +13,8 @@ class AmazonMarketPlaceTest extends TestCase
 {
     public function testValidMarketplace()
     {
-        $marketplace = new AmazonMarketplace(AmazonMarketplaceId::EUROPE_ITALY);
-
+        AmazonMarketPlaceData::clearMarketplaces();
+        $marketplace = new AmazonMarketplace(AmazonMarketplaceId::EUROPE_ITALY, false);
         $this->assertFalse($marketplace->error);
         $this->assertEquals(AmazonMarketplaceId::EUROPE_ITALY, $marketplace->getId());
         $this->assertEquals('Italy (EU)', $marketplace->getName());
@@ -23,8 +24,8 @@ class AmazonMarketPlaceTest extends TestCase
 
     public function testInvalidMarketplace()
     {
-        $marketplace = new AmazonMarketplace('INVALID_ID');
-
+        AmazonMarketPlaceData::clearMarketplaces();
+        $marketplace = new AmazonMarketplace('INVALID_ID',false);
         $this->assertTrue($marketplace->error);
         $this->assertNull($marketplace->getId());
         $this->assertNull($marketplace->getName());
